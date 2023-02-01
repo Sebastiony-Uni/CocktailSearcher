@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { Actions, PageServerLoad } from './$types';
 import type { drinksIngredient, ingredient } from '../components/types';
 
-export const load: PageServerLoad = async ({params}) => {
+export const load: PageServerLoad = async ({cookies, params}) => {
     const options = {
         method: 'GET',
         url: 'http://www.thecocktaildb.com/api/json/v1/1/list.php',
@@ -34,7 +34,7 @@ export const load: PageServerLoad = async ({params}) => {
         idx++;
     })
     return {
-        list: newArray
+        list: newArray,
     };
 };
 
@@ -63,26 +63,6 @@ export const actions: Actions = {
         console.log('https://www.thecocktaildb.com/api/json/v1/1/filter.php?' + addedParams)
         let response: any;
         const res = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?' + addedParams).then((res) => res.json()).then((data) => response = data)
-
-        // const options = {
-        //     method: 'GET',
-        //     url: 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?',
-        //     params: {i: "whiskey"},
-        //     headers: {
-        //         'Access-Control-Allow-Origin': '*',
-        //         'X-RapidAPI-Host': 'the-cocktail-db.p.rapidapi.com',
-        //     },
-        //     withCredentials: true,
-        //     credentials: 'same-origin',
-            
-        // };
-        // let res;
-        // await axios.request(options).then(function (response) {
-        //     res = response.data;
-        //     console.log(response.data)
-        // }).catch(function (error) {
-        //     console.error(error);
-        // });
 
         return {
             success: true,

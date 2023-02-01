@@ -19,10 +19,10 @@
         <p>{name}</p>
     </div>
     <div style="">
-        {#if !ticked}
+        {#if ticked}
         <button on:click={handleTick}>✅</button>
         {:else}
-        <button on:click={handleTick}>❌</button>
+        <button style="padding:3px 11px;" on:click={handleTick}>&nbsp;</button>
         {/if}
     </div>
 </div>
